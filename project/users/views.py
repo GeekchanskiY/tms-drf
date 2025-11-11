@@ -1,3 +1,10 @@
-from django.shortcuts import render
+from rest_framework import permissions, viewsets
 
-# Create your views here.
+from .serializers import ProfileSerializer
+from .models import Profile
+
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [permissions.AllowAny]
