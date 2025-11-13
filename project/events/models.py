@@ -19,5 +19,8 @@ class Outcomes(models.Model):
 
     success = models.BooleanField()
 
+    def is_success(self):
+        return self.success is True
+
     def __str__(self):
         return f'{self.event.name} - {self.name}'

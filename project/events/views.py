@@ -7,7 +7,7 @@ from .models import Event, Outcomes
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]
 
 
 class OutcomeViewSet(viewsets.ModelViewSet):
