@@ -5,23 +5,41 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('events', '0001_initial'),
-        ('users', '0001_initial'),
+        ("events", "0001_initial"),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Bet',
+            name="Bet",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('amount', models.FloatField()),
-                ('cf', models.FloatField()),
-                ('outcome', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='events.outcomes')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='users.profile')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("amount", models.FloatField()),
+                ("cf", models.FloatField()),
+                (
+                    "outcome",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="events.outcomes",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="users.profile"
+                    ),
+                ),
             ],
         ),
     ]

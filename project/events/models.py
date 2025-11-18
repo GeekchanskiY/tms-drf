@@ -15,7 +15,7 @@ class Event(models.Model):
 class Outcomes(models.Model):
     event = models.ForeignKey(to=Event, on_delete=models.CASCADE)
     cf = models.FloatField()
-    name = models.CharField(max_length=255, default='')
+    name = models.CharField(max_length=255, default="")
 
     success = models.BooleanField()
 
@@ -23,4 +23,4 @@ class Outcomes(models.Model):
         return self.success is True
 
     def __str__(self):
-        return f'{self.event.name} - {self.name}'
+        return f"{self.event.name} - {self.name}"

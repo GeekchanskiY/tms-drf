@@ -11,4 +11,4 @@ class Bet(models.Model):
     cf = models.FloatField()
 
     def __str__(self):
-        return f'{self.user.user.username} - {self.outcome.event.name}: {self.amount}'
+        return f"{self.user.user.username} - {self.outcome.event.name}: {self.amount}"
