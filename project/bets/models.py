@@ -1,5 +1,4 @@
 from django.db import models
-
 from events.models import Outcomes
 from users.models import Profile
 

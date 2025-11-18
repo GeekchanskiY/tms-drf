@@ -1,15 +1,13 @@
+from bets.views import BetViewSet
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import include, path
+from events.views import EventViewSet, OutcomeViewSet
 from rest_framework import routers
-
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
     TokenVerifyView,
 )
-
-from events.views import EventViewSet, OutcomeViewSet
-from bets.views import BetViewSet
 from users.views import ProfileViewSet
 
 router = routers.DefaultRouter()

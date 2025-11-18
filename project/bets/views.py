@@ -1,7 +1,7 @@
 from rest_framework import permissions, viewsets
 
-from .serializers import BetSerializer
 from .models import Bet
+from .serializers import BetSerializer
 
 
 class BetViewSet(viewsets.ModelViewSet):

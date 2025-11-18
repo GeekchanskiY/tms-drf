@@ -1,7 +1,5 @@
 from .models import Profile
 
-from django.contrib.auth.models import AnonymousUser
-
 
 class ProfileMiddleware:
     def __init__(self, get_response):

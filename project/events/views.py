@@ -1,7 +1,7 @@
 from rest_framework import permissions, viewsets
 
-from .serializers import EventSerializer, OutcomeSerializer
 from .models import Event, Outcomes
+from .serializers import EventSerializer, OutcomeSerializer
 
 
 class EventViewSet(viewsets.ModelViewSet):

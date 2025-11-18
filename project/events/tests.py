@@ -1,13 +1,11 @@
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from django.utils import timezone
-from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth import get_user_model
-
 from rest_framework.test import APIRequestFactory, force_authenticate
 
 from .models import Event, Outcomes
 from .views import EventViewSet
-
 
 User = get_user_model()
 

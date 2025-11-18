@@ -1,7 +1,7 @@
 from rest_framework import permissions, viewsets
 
-from .serializers import ProfileSerializer
 from .models import Profile
+from .serializers import ProfileSerializer
 
 
 class ProfileViewSet(viewsets.ModelViewSet):
