@@ -1,1 +1,3 @@
-source ./env/bin/activate && ruff format && git add .
+source ./env/bin/activate 
+ruff format
+git add .
