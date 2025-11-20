@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from users.views import ProfileViewSet
+from users.views import ProfileViewSet, ProfileBalanceCheck
 
 router = routers.DefaultRouter()
 router.register(r"events", EventViewSet)
@@ -18,6 +18,7 @@ router.register(r"profile", ProfileViewSet)
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),
+    path("api/v1/balance/", ProfileBalanceCheck.as_view(), name="profile-balance"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
