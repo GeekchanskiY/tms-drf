@@ -8,7 +8,7 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-from users.views import ProfileViewSet, ProfileBalanceCheck
+from users.views import ProfileBalanceCheck, ProfileViewSet
 
 router = routers.DefaultRouter()
 router.register(r"events", EventViewSet)
