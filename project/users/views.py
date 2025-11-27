@@ -1,12 +1,14 @@
 from datetime import datetime
 
 from django.core.cache import cache
+from drf_yasg import openapi
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Profile
-from .serializers import ProfileSerializer
+from .serializers import BalanceInfoSerializer, ProfileSerializer
 from .utils import get_user_cache_key
 
 
@@ -16,9 +18,18 @@ class ProfileViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
 
 
+balance_check_response = openapi.Response(
+    "current balance", schema=BalanceInfoSerializer
+)
+
+
 class ProfileBalanceCheck(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
+    @swagger_auto_schema(
+        operation_description="Get current user balance info",
+        responses={200: balance_check_response},
+    )
     def get(self, request, *args, **kwargs):
         print("ProfileBalanceCheck called")
         now = datetime.now()
@@ -28,7 +39,9 @@ class ProfileBalanceCheck(APIView):
             end = datetime.now()
             print(f"Cache hit time taken: {(end - now).total_seconds()}")
 
-            return Response({"balance": value})
+            serializer = BalanceInfoSerializer({"balance": value})
+
+            return Response(serializer.data)
 
         profile = Profile.objects.get(user__id=request.user.id)
 
@@ -37,4 +50,11 @@ class ProfileBalanceCheck(APIView):
         end = datetime.now()
         print(f"Cache miss time taken: {(end - now).total_seconds()}")
 
-        return Response({"balance": profile.balance})
+        serializer = BalanceInfoSerializer(
+            data={"balance": None},
+        )
+
+        if not serializer.is_valid():
+            return Response(status=500)
+
+        return Response(serializer.validated_data, status=200)

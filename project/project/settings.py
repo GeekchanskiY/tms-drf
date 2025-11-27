@@ -158,4 +158,5 @@ SWAGGER_SETTINGS = {
         }
     },
     "REFETCH_SCHEMA_WITH_AUTH": True,
+    "DEFAULT_API_URL": "https://custom-bets-service.com",
 }

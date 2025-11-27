@@ -7,3 +7,7 @@ class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Profile
         fields = ["id", "user", "balance"]
+
+
+class BalanceInfoSerializer(serializers.Serializer):
+    balance = serializers.FloatField(required=True)
