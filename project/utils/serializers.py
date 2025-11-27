@@ -2,10 +2,7 @@ from rest_framework import serializers
 
 
 class ErrorResponseSerializer(serializers.Serializer):
-    code = serializers.CharField(required=True)
-
     message = serializers.CharField(required=True)
-
     details = serializers.DictField(
         child=serializers.ListField(child=serializers.CharField()),
         required=False,

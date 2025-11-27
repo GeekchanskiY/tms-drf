@@ -1,4 +1,4 @@
-from bets.views import BetViewSet
+from bets.views import BetView, BetViewSet
 from django.contrib import admin
 from django.urls import include, path
 from drf_yasg import openapi
@@ -44,6 +44,7 @@ urlpatterns = [
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
     path("api/v1/", include(router.urls)),
     path("api/v1/balance/", ProfileBalanceCheck.as_view(), name="profile-balance"),
+    path("api/v1/bet/", BetView.as_view(), name="bet"),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),

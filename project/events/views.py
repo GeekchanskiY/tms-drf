@@ -13,4 +13,4 @@ class EventViewSet(viewsets.ModelViewSet):
 class OutcomeViewSet(viewsets.ModelViewSet):
     queryset = Outcomes.objects.all()
     serializer_class = OutcomeSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAdminUser]

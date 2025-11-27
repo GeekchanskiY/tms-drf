@@ -7,8 +7,6 @@ class ProfileMiddleware:
 
     def __call__(self, request):
         if request.user.is_authenticated:
-            print(type(request.user))
-            print(request.user)
             profile = Profile.objects.get(user__id=request.user.id)
             request.profile = profile
 
