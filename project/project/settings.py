@@ -160,3 +160,18 @@ SWAGGER_SETTINGS = {
     "REFETCH_SCHEMA_WITH_AUTH": True,
     "DEFAULT_API_URL": "https://custom-bets-service.com",
 }
+
+# Celery Configuration
+CELERY_BROKER_URL = "redis://localhost:6379/0"
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+CELERY_BEAT_SCHEDULE = {
+    # 'delete_expired_events': {
+    #     'task': 'events.tasks.delete_expired_events',
+    #     'schedule': timedelta(minutes=10),
+    # },
+}
+CELERY_TIMEZONE = "Europe/Moscow"
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60

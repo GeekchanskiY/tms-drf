@@ -3,6 +3,7 @@ from datetime import datetime
 from django.core.cache import cache
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
+from project.celery import debug_task
 from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -51,10 +52,12 @@ class ProfileBalanceCheck(APIView):
         print(f"Cache miss time taken: {(end - now).total_seconds()}")
 
         serializer = BalanceInfoSerializer(
-            data={"balance": None},
+            data={"balance": profile.balance},
         )
 
         if not serializer.is_valid():
             return Response(status=500)
+
+        debug_task.delay()
 
         return Response(serializer.validated_data, status=200)
