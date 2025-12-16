@@ -14,6 +14,7 @@ from .serializers import (
     BetSerializer,
     BetsListResponseSerializer,
 )
+from .tasks import send_bet_messages
 
 
 class BetViewSet(viewsets.ModelViewSet):
@@ -124,5 +125,7 @@ class BetView(APIView):
         )
         if not response_serializer.is_valid():
             return Response(status=500)
+
+        send_bet_messages.delay(bet_id=outcome.id)
 
         return Response(response_serializer.validated_data, status=201)
